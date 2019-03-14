@@ -15,7 +15,7 @@
                                   Icon="pack://application:,,,/RGBSync+;component/tl_icon.ico"
                                   IconCommand="{Binding OpenHomepageCommand}"
                                   Width="1280"  Height="720"
-                                  Closed="ConfigurationWindow_OnClosed">
+                                  Closed="ConfigurationWindow_OnClosed" ResizeMode="CanMinimize">
 
     <controls:BlurredDecorationWindow.Resources>
         <styles:CachedResourceDictionary>
@@ -31,25 +31,41 @@
 
     <TabControl Style="{StaticResource StyleTabControlNavigation}">
         <TabItem Header="LED Groups">
+            
             <AdornerDecorator>
-                <DockPanel LastChildFill="True">
+                <DockPanel LastChildFill="True" >
+                    <GroupBox DockPanel.Dock="Bottom" Margin="0,8,1006,0">
+                        <DockPanel VerticalAlignment="Bottom">
+                            <Button DockPanel.Dock="Left"
+                                    HorizontalAlignment="Left" 
+                                    Command="{Binding ImportCommand}" Click="Button_Click" >
+                                <StackPanel Height="Auto" Orientation="Horizontal">
+                                    <Image Margin="0,0,2,0" Width="16" Height="16" Source="/RGBSync+;component/Resources/import.png" />
+                                    <TextBlock>Import Groups</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button DockPanel.Dock="Left"
+                                    HorizontalAlignment="Right" 
+                                    Command="{Binding ExportCommand}" >
+                                <StackPanel Height="Auto" Orientation="Horizontal">
+                                    <Image Margin="0,0,2,0" Width="16" Height="16" Source="/RGBSync+;component/Resources/export.png" />
+                                    <TextBlock>Export Groups</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            
+                        </DockPanel>
+                    </GroupBox>
                     <GroupBox DockPanel.Dock="Left" Width="260">
                         <DockPanel VerticalAlignment="Top">
                             <Button DockPanel.Dock="Bottom"
                                     HorizontalAlignment="Center" 
                                     Margin="8" 
-                                    Content="Export Configuration"
-                                    Command="{Binding ExportCommand}" />
-                            <Button DockPanel.Dock="Bottom"
-                                    HorizontalAlignment="Center" 
-                                    Margin="8" 
-                                    Content="Import Configuration"
-                                    Command="{Binding ImportCommand}" Click="Button_Click" />
-                            <Button DockPanel.Dock="Bottom"
-                                    HorizontalAlignment="Center" 
-                                    Margin="8" 
-                                    Content="New LED Group"
-                                    Command="{Binding AddSyncGroupCommand}" />
+                                    Command="{Binding AddSyncGroupCommand}" >
+                                <StackPanel VerticalAlignment="Center" Height="Auto" Orientation="Horizontal">
+                                <Image Margin="0,0,2,0" Width="18" Height="18" Source="/RGBSync+;component/Resources/add.png" />
+                                <TextBlock VerticalAlignment="Center" FontSize="16">New LED Group</TextBlock>
+                            </StackPanel>
+                            </Button>
 
 
                             <ListBox ItemsSource="{Binding SyncGroups}"
@@ -239,12 +255,10 @@
                                 <Label controls:Form.IsLabel="True" 
                                        Content="Aura " />
                                 <Button
-                                    DockPanel.Dock="Bottom"
                                     HorizontalAlignment="Center" 
-                                    Margin="8" 
-                                    Height="30"
-                                    Content="Toggle Asus Device-Provider"
-                                    Command="{Binding ToggleAuraCommand}" />
+                                    Content="Toggle Asus Mode"
+                                    Command="{Binding ToggleAuraCommand}" Width="130" >
+                                </Button>
 
                                 <Label controls:Form.LineBreaks="1" controls:Form.IsLabel="True" Content="Devices:" />
 
@@ -271,13 +285,25 @@
                 </GroupBox>
             </AdornerDecorator>
         </TabItem>
-        <TabItem Header="Tech Support">
+        <TabItem Header="About">
             <AdornerDecorator>
                 <DockPanel LastChildFill="True">
-                    <GroupBox DockPanel.Dock="Left" Width="467">
+                    <GroupBox DockPanel.Dock="Left" >
                         <TextBlock TextWrapping="Wrap">
-                            Having an issue or need help setting up this program? <LineBreak /> <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="8" Content="Join my Discord Server" Command="{Binding DiscordCommand}" />
-                        </TextBlock>
+                            <Run Text="JackNetRGB Sync v1.5 by Fanman03" FontSize="20"/><LineBreak />
+                            <Run Text="The one-stop utlility for syncing your RGB perhipherals and components. Compatible with Corsair iCUE, Asus AURA, Razer Synapse, Logitech Gaming, and Cooler Master Masterplus." />
+                            <LineBreak /><LineBreak />
+                            <Run Text="Having an issue or need help setting up this program?"/><LineBreak /><InlineUIContainer/><InlineUIContainer>
+                                <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Command="{Binding DiscordCommand}" >
+                                        <StackPanel VerticalAlignment="Center" Height="Auto" Orientation="Horizontal">
+                                <Image Margin="0,0,2,0" Width="20" Height="20" Source="/RGBSync+;component/Resources/discord.png" />
+                                <TextBlock VerticalAlignment="Center" >Join my Discord Server</TextBlock>
+                            </StackPanel>
+                             </Button>
+                            </InlineUIContainer><LineBreak /><InlineUIContainer>
+                                <Image Height="50" Width="50" Margin="2,2,4,2" Source="/RGBSync+;component/Resources/argebee_old.ico"/>
+                            </InlineUIContainer><Run Text="JackNet RGB Sync is powered by RGB.net" BaselineAlignment="Center"/></TextBlock>
+
                     </GroupBox>
                 </DockPanel>
             </AdornerDecorator>

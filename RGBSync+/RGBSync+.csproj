@@ -270,5 +270,35 @@
   <ItemGroup>
     <Resource Include="tl_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\argebee_old.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\exit.png" />
+    <Resource Include="Resources\reload.png" />
+    <Resource Include="Resources\settings.png" />
+    <Resource Include="Resources\support.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\normal.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\groups.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\discord.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

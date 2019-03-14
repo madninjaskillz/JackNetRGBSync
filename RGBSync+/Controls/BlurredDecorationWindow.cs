@@ -76,7 +76,7 @@ namespace RGBSyncPlus.Controls
                 closeButton.Click += (sender, args) => ApplicationManager.Instance.ExitCommand.Execute(null);
 
             if (GetTemplateChild("PART_MinimizeButton") is Button minimizeButton)
-                minimizeButton.Click += (sender, args) => Hide();
+                minimizeButton.Click += (sender, args) => ApplicationManager.Instance.HideConfigurationCommand.Execute(null);
 
             if (GetTemplateChild("PART_IconButton") is Button iconButton)
                 iconButton.Click += (sender, args) => IconCommand?.Execute(null);

@@ -2,6 +2,8 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Resources;
 using Hardcodet.Wpf.TaskbarNotification;
 using Newtonsoft.Json;
 using RGBSyncPlus.Configuration;
@@ -55,7 +57,11 @@ namespace RGBSyncPlus
 
                 ApplicationManager.Instance.Settings = settings;
                 ApplicationManager.Instance.Initialize();
-                ApplicationManager.Instance.OpenConfiguration();
+                if (!settings.MinimizeToTray) //HACK DarthAffe 02.12.2018: Workaround to create the window
+                {
+                    ApplicationManager.Instance.OpenConfigurationCommand.Execute(null);
+                    ApplicationManager.Instance.HideConfigurationCommand.Execute(null);
+                }
             }
             catch (Exception ex)
             {

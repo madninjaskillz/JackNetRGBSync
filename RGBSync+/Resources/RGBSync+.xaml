@@ -35,6 +35,9 @@
     <Style TargetType="ListBox" BasedOn="{StaticResource StyleListBox}" />
     <Style TargetType="Slider" BasedOn="{StaticResource StyleSlider}" />
     <Style TargetType="TextBox" BasedOn="{StaticResource StyleTextBox}" />
+    <Style TargetType="{x:Type ContextMenu}">
+      <Setter Property = "FontSize" Value="14"/>  
+    </Style>
 
 </styles:CachedResourceDictionary>
 

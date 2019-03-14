@@ -21,7 +21,6 @@ using IDropTarget = GongSolutions.Wpf.DragDrop.IDropTarget;
 using MessageBox = System.Windows.MessageBox;
 using RGBSyncPlus.Configuration;
 using RGBSyncPlus.Configuration.Legacy;
-using RGBSyncPlus.Helper;
 using Settings = RGBSyncPlus.Configuration.Settings;
 using Application = System.Windows.Application;
 

@@ -12,14 +12,36 @@
 
             <tb:TaskbarIcon x:Key="TaskbarIcon"
                             IconSource="Resources/argebee.ico"
-                            ToolTip="JackNet RGB SYNC"
+                            ToolTip="JackNet RGB Sync"
                             MenuActivation="LeftOrRightClick">
-                <tb:TaskbarIcon.ContextMenu>
+                <tb:TaskbarIcon.ContextMenu >
                     <ContextMenu>
-                        <MenuItem Header="Open UI" Command="{Binding Source={x:Static rgbSyncPlus:ApplicationManager.Instance}, Path=OpenConfigurationCommand}" />
-                        <MenuItem Header="Tech Support" Command="{Binding Source={x:Static rgbSyncPlus:ApplicationManager.Instance}, Path=TechSupportCommand}" />
-                        <MenuItem Header="Restart App" Command="{Binding Source={x:Static rgbSyncPlus:ApplicationManager.Instance}, Path=RestartAppCommand}" />
-                        <MenuItem Header="Exit" Command="{Binding Source={x:Static rgbSyncPlus:ApplicationManager.Instance}, Path=ExitCommand}" />
+                        <MenuItem Header="JackNet RGB Sync v1.5" IsEnabled="False">
+                            <MenuItem.Icon>
+                                <Image Source="/RGBSync+;component/Resources/argebee.ico" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="Open UI" Command="{Binding Source={x:Static rgbSyncPlus:ApplicationManager.Instance}, Path=OpenConfigurationCommand}" >
+                            <MenuItem.Icon>
+                                <Image Source="/RGBSync+;component/Resources/settings.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Tech Support" Command="{Binding Source={x:Static rgbSyncPlus:ApplicationManager.Instance}, Path=TechSupportCommand}" >
+                            <MenuItem.Icon>
+                               <Image Source="/RGBSync+;component/Resources/support.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Restart App" Command="{Binding Source={x:Static rgbSyncPlus:ApplicationManager.Instance}, Path=RestartAppCommand}" >
+                            <MenuItem.Icon>
+                                <Image Source="/RGBSync+;component/Resources/reload.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Exit" Command="{Binding Source={x:Static rgbSyncPlus:ApplicationManager.Instance}, Path=ExitCommand}" >
+                            <MenuItem.Icon>
+                                <Image Source="/RGBSync+;component/Resources/exit.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </ContextMenu>
                 </tb:TaskbarIcon.ContextMenu>
             </tb:TaskbarIcon>

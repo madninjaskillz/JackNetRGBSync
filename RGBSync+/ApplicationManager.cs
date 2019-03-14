@@ -39,6 +39,9 @@ namespace RGBSyncPlus
         private ActionCommand _openConfiguration;
         public ActionCommand OpenConfigurationCommand => _openConfiguration ?? (_openConfiguration = new ActionCommand(OpenConfiguration));
 
+        private ActionCommand _hideConfiguration;
+        public ActionCommand HideConfigurationCommand => _hideConfiguration ?? (_hideConfiguration = new ActionCommand(HideConfiguration));
+
         private ActionCommand _restartApp;
         public ActionCommand RestartAppCommand => _restartApp ?? (_restartApp = new ActionCommand(RestartApp));
 
@@ -138,11 +141,25 @@ namespace RGBSyncPlus
                     group.RemoveLeds(args.OldItems.Cast<SyncLed>().GetLeds());
             }
         }
+        private void HideConfiguration()
+        {
+            if (Settings.MinimizeToTray)
+            {
+                if (_configurationWindow.IsVisible)
+                    _configurationWindow.Hide();
+            }
+            else
+                _configurationWindow.WindowState = WindowState.Minimized;
+        }
 
         public void OpenConfiguration()
         {
             if (_configurationWindow == null) _configurationWindow = new ConfigurationWindow();
-            _configurationWindow.Show();
+            if (!_configurationWindow.IsVisible)
+                _configurationWindow.Show();
+
+            if (_configurationWindow.WindowState == WindowState.Minimized)
+                _configurationWindow.WindowState = WindowState.Normal;
         }
 
         public void RestartApp()
