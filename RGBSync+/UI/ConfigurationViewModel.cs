@@ -44,6 +44,16 @@ namespace RGBSyncPlus.UI
             }
         }
 
+        public bool IsMinimized
+        {
+            get => ApplicationManager.Instance.Settings.MinimizeToTray;
+            set
+            {
+                ApplicationManager.Instance.Settings.MinimizeToTray = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<SyncGroup> _syncGroups;
         public ObservableCollection<SyncGroup> SyncGroups
         {
@@ -99,6 +109,9 @@ namespace RGBSyncPlus.UI
         private ActionCommand _toggleAura;
         public ActionCommand ToggleAuraCommand => _toggleAura ?? (_toggleAura = new ActionCommand(ToggleAura));
 
+        private ActionCommand _openSetCommand;
+        public ActionCommand OpenSetCommand => _openSetCommand ?? (_openSetCommand = new ActionCommand(OpenSet));
+
         private ActionCommand _discord;
         public ActionCommand DiscordCommand => _discord ?? (_discord = new ActionCommand(Discord));
 
@@ -148,6 +161,18 @@ namespace RGBSyncPlus.UI
         private void OpenHomepage() => Process.Start("https://www.fanman03.ml/");
 
         private void Discord() => Process.Start("https://discordapp.com/invite/pRyBKPr");
+
+        private void OpenSet()
+        {
+            if(ApplicationManager.Instance.Settings.MinimizeToTray == true)
+            {
+                IsMinimized = true;
+            }
+            else if (ApplicationManager.Instance.Settings.MinimizeToTray == false)
+            {
+                IsMinimized = false;
+            }
+        }
 
         private void Export()
         {

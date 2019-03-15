@@ -260,6 +260,10 @@
                                     Command="{Binding ToggleAuraCommand}" Width="130" >
                                 </Button>
 
+                                <Label controls:Form.IsLabel="True" 
+                                       Content="Startup " />
+                                <CheckBox IsChecked="{Binding IsMinimized}"  Command="{Binding OpenSetCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Foreground="White">Start program minimized</CheckBox>
+
                                 <Label controls:Form.LineBreaks="1" controls:Form.IsLabel="True" Content="Devices:" />
 
                             </controls:Form>
