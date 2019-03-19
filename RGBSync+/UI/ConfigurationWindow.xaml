@@ -289,6 +289,46 @@
                 </GroupBox>
             </AdornerDecorator>
         </TabItem>
+        <TabItem Header="Network">
+            <AdornerDecorator>
+                <DockPanel LastChildFill="True" HorizontalAlignment="Center">
+                    <GroupBox DockPanel.Dock="Left"  Width="630" Margin="0,0,4,0">
+                        <DockPanel>
+                            <TextBlock>
+                            <Run FontSize="20" Text="Client" /> <LineBreak/>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding EnableClient}"  Command="{Binding ToggleServerCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Foreground="White">Enable Client</CheckBox><LineBreak/>
+                            <Label controls:Form.IsLabel="True" Content="Server IP " Foreground="White" />
+                                <TextBox x:Name="ClientHost" Text="{Binding ClientIP}" Width="80"/><LineBreak/>
+                            <Label controls:Form.IsLabel="True" Content="Server Port " Foreground="White" />
+                                <TextBox x:Name="ClientPort" Text="{Binding ClientPort}" Width="40" /><LineBreak/>
+                                <Button x:Name="ClientBtn" DockPanel.Dock="Bottom"
+                                    HorizontalAlignment="Center" 
+                                    IsEnabled="{Binding EnableClient}"
+                                    Command="{Binding StartClientCommand}" >Start Client</Button>
+                            </TextBlock>
+                        </DockPanel>
+            
+
+                    </GroupBox>
+                    <GroupBox Width="630">
+                        <DockPanel>
+                            <TextBlock>
+                            <Run FontSize="20" Text="Client" /> <LineBreak/>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding EnableServer}"  Command="{Binding ToggleServerCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Foreground="White">Enable Server</CheckBox><LineBreak/>
+                            <Label controls:Form.IsLabel="True" Content="Server Port " Foreground="White" />
+                                <TextBox x:Name="ServerPort" Text="{Binding ServerPort}" Width="40" /><LineBreak/>
+                                <Button x:Name="ServerBtn" DockPanel.Dock="Bottom"
+                                    HorizontalAlignment="Center" 
+                                    IsEnabled="{Binding EnableServer}"
+                                    Command="{Binding StartServerCommand}" >Start Server</Button>
+                            </TextBlock>
+                        </DockPanel>
+                    </GroupBox>
+
+                </DockPanel>
+
+            </AdornerDecorator>
+        </TabItem>
         <TabItem Header="About">
             <AdornerDecorator>
                 <DockPanel LastChildFill="True">

@@ -23,6 +23,8 @@ using RGBSyncPlus.Configuration;
 using RGBSyncPlus.Configuration.Legacy;
 using Settings = RGBSyncPlus.Configuration.Settings;
 using Application = System.Windows.Application;
+using Newtonsoft.Json.Linq;
+using System.Text;
 
 namespace RGBSyncPlus.UI
 {
@@ -51,6 +53,77 @@ namespace RGBSyncPlus.UI
             {
                 ApplicationManager.Instance.Settings.MinimizeToTray = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public bool EnableServer
+        {
+            get => ApplicationManager.Instance.Settings.EnableServer;
+            set
+            {
+                ApplicationManager.Instance.Settings.EnableServer = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool EnableClient
+        {
+            get => ApplicationManager.Instance.Settings.EnableClient;
+            set
+            {
+                ApplicationManager.Instance.Settings.EnableClient = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ClientIP
+        {
+            get
+            {
+                JObject config = JObject.Parse(File.ReadAllText("config.json", Encoding.UTF8));
+                JObject client = (JObject)config["client"];
+                return client["host"].ToString();
+            }
+            set
+            {
+                JObject config = JObject.Parse(File.ReadAllText("config.json", Encoding.UTF8));
+                JObject client = (JObject)config["client"];
+                client["host"] = value;
+                File.WriteAllText("config.json", config.ToString());
+            }
+        }
+
+        public string ClientPort
+        {
+            get
+            {
+                JObject config = JObject.Parse(File.ReadAllText("config.json", Encoding.UTF8));
+                JObject client = (JObject)config["client"];
+                return client["port"].ToString();
+            }
+            set
+            {
+                JObject config = JObject.Parse(File.ReadAllText("config.json", Encoding.UTF8));
+                JObject client = (JObject)config["client"];
+                client["port"] = value;
+                File.WriteAllText("config.json", config.ToString());
+            }
+        }
+
+        public string ServerPort
+        {
+            get
+            {
+                JObject config = JObject.Parse(File.ReadAllText("config.json", Encoding.UTF8));
+                JObject client = (JObject)config["server"];
+                return client["port"].ToString();
+            }
+            set
+            {
+                JObject config = JObject.Parse(File.ReadAllText("config.json", Encoding.UTF8));
+                JObject client = (JObject)config["server"];
+                client["port"] = value;
+                File.WriteAllText("config.json", config.ToString());
             }
         }
 
@@ -112,6 +185,18 @@ namespace RGBSyncPlus.UI
         private ActionCommand _openSetCommand;
         public ActionCommand OpenSetCommand => _openSetCommand ?? (_openSetCommand = new ActionCommand(OpenSet));
 
+        private ActionCommand _startClientCommand;
+        public ActionCommand StartClientCommand => _startClientCommand ?? (_startClientCommand = new ActionCommand(StartClient));
+
+        private ActionCommand _startServerCommand;
+        public ActionCommand StartServerCommand => _startServerCommand ?? (_startServerCommand = new ActionCommand(StartServer));
+
+        private ActionCommand _toggleServerCommand;
+        public ActionCommand ToggleServerCommand => _toggleServerCommand ?? (_toggleServerCommand = new ActionCommand(ToggleServer));
+
+        private ActionCommand _toggleClientCommand;
+        public ActionCommand ToggleClientCommand => _toggleClientCommand ?? (_toggleClientCommand = new ActionCommand(ToggleClient));
+
         private ActionCommand _discord;
         public ActionCommand DiscordCommand => _discord ?? (_discord = new ActionCommand(Discord));
 
@@ -172,6 +257,43 @@ namespace RGBSyncPlus.UI
             {
                 IsMinimized = false;
             }
+        }
+
+        public void ToggleServer()
+        {
+            if(EnableServer == true)
+            {
+                EnableServer = false;
+            } else
+            {
+                EnableServer = true;
+                EnableClient = false;
+            }
+
+        }
+
+        public void ToggleClient()
+        {
+            if (EnableClient == true)
+            {
+                EnableClient = false;
+            }
+            else
+            {
+                EnableClient = true;
+                EnableServer = false;
+            }
+
+        }
+
+        private void StartClient()
+        {
+            Process.Start("sync.exe");
+        }
+
+        private void StartServer()
+        {
+            Process.Start("serve.exe");
         }
 
         private void Export()

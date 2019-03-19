@@ -17,7 +17,11 @@ namespace RGBSyncPlus.Configuration
 
         public double UpdateRate { get; set; } = 30.0;
 
-        public bool MinimizeToTray { get; set; } = true;
+        public bool MinimizeToTray { get; set; } = false;
+
+        public bool EnableClient { get; set; } = false;
+
+        public bool EnableServer { get; set; } = false;
 
         public List<SyncGroup> SyncGroups { get; set; } = new List<SyncGroup>();
 
